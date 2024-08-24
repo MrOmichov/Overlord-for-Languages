@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Overlord-for-Languages">
+    <output-path>$PROJECT_DIR$/out/Overlord_for_Languages</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="org.mromichov.overlordforlanguages.HelloApplication" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Overlord for Languages" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Overlord_for_Languages.jar">
+        <element id="module-output" name="Overlord-for-Languages" />
+      </element>
+    </root>
+  </artifact>
+</component>

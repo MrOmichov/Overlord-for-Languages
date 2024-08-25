@@ -9,18 +9,26 @@ import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
+        HelloController controller = new HelloController();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        fxmlLoader.setController(controller);
+
+        Font.loadFont(getClass().getResourceAsStream("/font/Montserrat-ExtraBold.ttf"), 16);
+
         Scene scene = new Scene(fxmlLoader.load(), 640, 480);
         scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        controller.onStart();
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Overlord for Languages");
         stage.setScene(scene);
         stage.show();
     }

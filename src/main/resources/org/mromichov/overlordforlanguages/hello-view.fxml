@@ -13,10 +13,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.TextField?>
-<VBox alignment="TOP_CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.mromichov.overlordforlanguages.HelloController" styleClass="container">
+<?import javafx.scene.control.ScrollPane?>
+<VBox alignment="TOP_CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:id="container">
+<!--      fx:controller="org.mromichov.overlordforlanguages.HelloController"-->
+
     <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/></padding>
-    <GridPane hgap="15" vgap="15">
+
+    <GridPane hgap="15" vgap="15" fx:id="gridContainer">
 <!--        <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/></padding>-->
         <VBox.vgrow>always</VBox.vgrow>
         <columnConstraints>
@@ -29,7 +32,7 @@
             <RowConstraints percentHeight="60"/>
         </rowConstraints>
 
-        <TextArea text="Hello World!" wrapText="true" fx:id="input" styleClass="text-input">
+        <TextArea wrapText="true" fx:id="input" styleClass="text-input">
             <GridPane.columnIndex>0</GridPane.columnIndex>
             <GridPane.rowIndex>0</GridPane.rowIndex>
             <GridPane.rowSpan>2</GridPane.rowSpan>
@@ -41,23 +44,12 @@
             <GridPane.columnIndex>1</GridPane.columnIndex>
             <GridPane.rowIndex>0</GridPane.rowIndex>
         </Button>
-        <Button text="Dictionary" fx:id="dictionaryButton" maxWidth="Infinity" styleClass="right-button" >
+        <Button text="Dictionary" fx:id="dictionaryButton" maxWidth="Infinity" onAction="#onDictionaryButtonClick" styleClass="right-button" >
             <GridPane.halignment>center</GridPane.halignment>
             <GridPane.valignment>top</GridPane.valignment>
             <GridPane.columnIndex>1</GridPane.columnIndex>
             <GridPane.rowIndex>1</GridPane.rowIndex>
         </Button>
-
-        <FlowPane fx:id="bottomContainer" hgap="15" vgap="5" styleClass="bottom-container">
-            <GridPane.columnIndex>0</GridPane.columnIndex>
-            <GridPane.rowIndex>2</GridPane.rowIndex>
-            <GridPane.columnSpan>2</GridPane.columnSpan>
-            <Button text="Hello World!" styleClass="letter"/>
-            <Button text="Hello World!" styleClass="letter"/>
-            <Button text="Hello World!" styleClass="letter"/>
-            <Button text="Hello World!" styleClass="letter"/>
-            <Button text="Hello World!" styleClass="letter"/>
-        </FlowPane>
     </GridPane>
 <!--    <Label fx:id="welcomeText"/>-->
 <!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->

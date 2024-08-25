@@ -1,5 +1,6 @@
 .container {
-    -fx-font-size: 16px;
+    -fx-font-family: 'Montserrat ExtraBold';
+    -fx-font-size: 17px;
     -fx-background-color: rgb(15, 97, 138);
 }
 
@@ -18,7 +19,6 @@
     -fx-border-color: rgb(91, 164, 201);
     -fx-border-width: 5px;
     -fx-font-size: 1.3em;
-    -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-background-insets: 5px;
 }
@@ -30,6 +30,8 @@
 }
 
 .letter {
+    -fx-min-height: 1.1cm;
+    -fx-min-width: 1.1cm;
     -fx-text-fill: white;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
@@ -49,11 +51,27 @@
     -fx-background-color: rgb(5, 154, 230);
 }
 
-.bottom-container {
+.outer-bottom-container {
     -fx-padding: 15px;
     -fx-border-radius: 10px;
     -fx-border-color: rgb(91, 164, 201);
     -fx-border-width: 5px;
     -fx-background-insets: 5px;
     -fx-background-color: rgb(44, 142, 184);
+}
+
+.inner-scroll-bottom-container {
+    -fx-border-style: none;
+    -fx-border-width: 0px;
+    -fx-background-insets: 5px;
+    -fx-background-color: rgb(44, 142, 184);
+}
+
+.inner-flow-bottom-container {
+    -fx-padding: 10px;
+    -fx-background-color: rgb(44, 142, 184);
+}
+
+.upper-panel-bottom-container {
+    -fx-font-size: 1.2em;
 }

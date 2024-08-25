@@ -3,15 +3,21 @@ package org.mromichov.overlordforlanguages;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.util.Collection;
+
 
 public class ContentEditor {
     public boolean isBottomContainerShown;
@@ -73,6 +79,7 @@ public class ContentEditor {
         sp.getStyleClass().add("inner-scroll-bottom-container");
         sp.fitToHeightProperty().set(true);
         sp.fitToWidthProperty().set(true);
+
         return sp;
     }
 
@@ -87,4 +94,26 @@ public class ContentEditor {
             fp.getChildren().add(letter);
         }
     }
+
+    @FXML
+    public void addFileChooser(VBox vbox) {
+        FileChooser fileChooser = new FileChooser();
+    }
+
+    @FXML
+    public void rebuild(TextArea input, GridPane gridContainer) {
+        input.setText("New value");
+        Node bottomContainer = find(gridContainer.getChildren(), "bottomContainer");
+        if (bottomContainer == null) return;
+        gridContainer.getChildren().remove(bottomContainer);
+        isBottomContainerShown = false;
+    }
+
+    private Node find(Collection<Node> children, String id) {
+        for (Node child : children) {
+            if (child.getId().equals(id)) return child;
+        }
+        return null;
+    }
+
 }

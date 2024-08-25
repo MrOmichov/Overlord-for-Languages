@@ -1,6 +1,10 @@
 .container {
     -fx-font-family: 'Montserrat ExtraBold';
     -fx-font-size: 17px;
+    /*-fx-background-color: rgb(15, 97, 138);*/
+}
+
+#gridContainer {
     -fx-background-color: rgb(15, 97, 138);
 }
 
@@ -74,4 +78,40 @@
 
 .upper-panel-bottom-container {
     -fx-font-size: 1.2em;
+}
+
+.menu-bg {
+    -fx-background-color: rgb(51, 131, 171);
+}
+
+.menu:hover {
+    -fx-background-color: rgb(45, 84, 173);
+}
+
+.menu:pressed {
+    -fx-background-color: rgb(3, 46, 145);
+}
+
+.menu:focused {
+    -fx-background-color: rgb(3, 46, 145);
+}
+
+.menu-item {
+    -fx-background-color: rgb(44, 142, 184);
+}
+
+.menu-item:hover {
+    -fx-background-color: rgb(36, 77, 171);
+}
+
+.menu-item:pressed {
+    -fx-background-color: rgb(13, 53, 145);
+}
+
+.menu-item:focused {
+    -fx-background-color: rgb(13, 53, 145);
+}
+
+.separator-menu-item {
+    -fx-background-color: rgb(44, 142, 184);
 }

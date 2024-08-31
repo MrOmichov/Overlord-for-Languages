@@ -2,10 +2,17 @@ package org.mromichov.overlordforlanguages;
 
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 public class HelloController {
     private final ContentEditor contentEditor;
@@ -15,8 +22,6 @@ public class HelloController {
     private TextArea input;
     @FXML
     private GridPane gridContainer;
-    @FXML
-    private Button alphabetButton;
 
     public HelloController() {
         this.contentEditor = new ContentEditor();
@@ -40,12 +45,43 @@ public class HelloController {
 
     @FXML
     protected void onOpenFileButtonClick() {
-        contentEditor.rebuild(input, gridContainer);
+        contentEditor.openFile(container);
+        contentEditor.rebuild(gridContainer);
+    }
+
+    @FXML
+    protected void onNewFileButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloController.class.getResource("newFile.fxml"));
+
+        NewFileWindowController newFileWindowController = new NewFileWindowController();
+        fxmlLoader.setController(newFileWindowController);
+
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("New File");
+        stage.setAlwaysOnTop(true);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.showAndWait();
+
+        // TODO
+        System.out.println(newFileWindowController.getDirectoryPathname());
+    }
+
+    @FXML
+    protected void onSaveFileButtonClick() {
+
+    }
+
+    @FXML
+    protected void onQuitButtonClick() {
+
     }
 
     @FXML
     public void onStart() {
-        input.setText("AAA");
         container.getStyleClass().add("container");
+        contentEditor.rebuild(gridContainer);
     }
 }

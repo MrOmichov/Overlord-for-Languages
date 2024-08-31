@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -15,14 +14,30 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.mromichov.overlordforlanguages.odm.FileWork;
+import org.mromichov.overlordforlanguages.odm.Language;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 
 
 public class ContentEditor {
+    private String headerBottomContainer;
     public boolean isBottomContainerShown;
+
+    private final FileWork fileWorker;
+    private Language language;
+
+    public ContentEditor() {
+        this.fileWorker = new FileWork();
+        if (!fileWorker.isSettingsFileExists()) fileWorker.createSettingsFile();
+        language = fileWorker.getLanguage();
+    }
+
     @FXML
     public VBox addOuterBottomContainer(String bottomContainerName, GridPane gridContainer) {
+        headerBottomContainer = bottomContainerName;
         VBox vbox = new VBox();
         vbox.setSpacing(15);
         vbox.setId("bottomContainer");
@@ -41,8 +56,9 @@ public class ContentEditor {
         gp.getColumnConstraints().add(column);
         gp.getColumnConstraints().add(column);
 
-        Label alphabetText = new Label(name);
-        GridPane.setValignment(alphabetText, VPos.TOP);
+        Label header = new Label(name);
+        header.setId("headerBottomContainer");
+        GridPane.setValignment(header, VPos.TOP);
 
         // close button
         Button closeButton = new Button();
@@ -60,7 +76,7 @@ public class ContentEditor {
             isBottomContainerShown = false;
         });
 
-        gp.add(alphabetText, 0, 0);
+        gp.add(header, 0, 0);
         gp.add(closeButton, 1, 0);
         return gp;
     }
@@ -83,30 +99,41 @@ public class ContentEditor {
         return sp;
     }
 
+    @FXML // TODO
     private void addDictionary(FlowPane fp) {
+        if (language == null || language.dictionary.isEmpty()) return;
     }
 
     @FXML
     private void addAlphabet(FlowPane fp) {
-        for (int i = 0; i < 33; i++) {
-            Button letter = new Button("Ж");
-            letter.getStyleClass().add("letter");
-            fp.getChildren().add(letter);
+        if (language == null || language.letters.isEmpty()) return;
+        for (String letterName : language.letters.keySet()) {
+            Button letterButton = new Button(letterName);
+            letterButton.getStyleClass().add("letter");
+            fp.getChildren().add(letterButton);
         }
     }
 
     @FXML
-    public void addFileChooser(VBox vbox) {
-        FileChooser fileChooser = new FileChooser();
+    public void newFile() {
+
     }
 
     @FXML
-    public void rebuild(TextArea input, GridPane gridContainer) {
-        input.setText("New value");
+    public void openFile(VBox container) {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(container.getScene().getWindow());
+        if (selectedFile == null) return;
+        language = fileWorker.getLanguage(selectedFile);
+    }
+
+    @FXML // TODO rebuild input
+    public void rebuild(GridPane gridContainer) {
         Node bottomContainer = find(gridContainer.getChildren(), "bottomContainer");
         if (bottomContainer == null) return;
+
         gridContainer.getChildren().remove(bottomContainer);
-        isBottomContainerShown = false;
+        gridContainer.add(addOuterBottomContainer(headerBottomContainer, gridContainer), 0, 2, 2, 1);
     }
 
     private Node find(Collection<Node> children, String id) {
@@ -115,5 +142,4 @@ public class ContentEditor {
         }
         return null;
     }
-
 }

@@ -17,18 +17,16 @@
 <VBox alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml" fx:id="container">
     <MenuBar VBox.vgrow="NEVER" styleClass="menu-bg">
         <Menu mnemonicParsing="false" text="File" styleClass="menu-bg">
-            <MenuItem mnemonicParsing="false" text="New"/>
+            <MenuItem mnemonicParsing="false" text="New" fx:id="newFileButton" onAction="#onNewFileButtonClick"/>
             <MenuItem mnemonicParsing="false" text="Open…" fx:id="openFileButton" onAction="#onOpenFileButtonClick"/>
             <Menu mnemonicParsing="false" text="Open Recent"/>
             <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Close"/>
-            <MenuItem mnemonicParsing="false" text="Save"/>
+            <MenuItem mnemonicParsing="false" text="Save" onAction="#onSaveFileButtonClick"/>
             <MenuItem mnemonicParsing="false" text="Save As…"/>
-            <MenuItem mnemonicParsing="false" text="Revert"/>
             <SeparatorMenuItem mnemonicParsing="false"/>
             <MenuItem mnemonicParsing="false" text="Preferences…"/>
             <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Quit"/>
+            <MenuItem mnemonicParsing="false" text="Quit" onAction="#onQuitButtonClick"/>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit" styleClass="menu-bg">
             <MenuItem mnemonicParsing="false" text="Undo"/>
